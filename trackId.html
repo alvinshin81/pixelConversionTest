@@ -14,12 +14,21 @@
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
     <script type="text/javascript" charset="UTF-8" src="//t1.daumcdn.net/kas/static/kp.dev.min.js"></script>
+<!--    <script type="text/javascript" charset="UTF-8">-->
+<!--        const button = document.querySelector("button");-->
+<!--        button.onclick = function () {-->
+<!--          let name = prompt("What is your name?");-->
+<!--          alert("Hello " + name + ", nice to see you!");-->
+<!--        };-->
+<!--    </script>-->
     <script type="text/javascript" charset="UTF-8">
-        const button = document.querySelector("button");
-        button.onclick = function () {
-          let name = prompt("What is your name?");
-          alert("Hello " + name + ", nice to see you!");
-        };
+        let trackId = document.getElementById('trackId');
+        let buttonPageView = document.getElementById('pageView');
+
+        buttonPageView.addEventListener('click', function(){
+            kakaoPixel(trackId).pageView();
+        });
+
     </script>
     <style>
         /* 꾸미기 */
@@ -56,6 +65,9 @@
 </head>
 <body>
     <button>track Id를 입력하세요.</button>
+    <input id="trackId" placeholder="트랙 ID를 입력하세요.">
+    <button id="pageView">방문</button>
+    <div id="result"></div>
 
 </body>
 </html>
