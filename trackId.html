@@ -31,7 +31,7 @@
             const r = "방문 완료";
             document.getElementById('result').innerText = r
         });
-        
+
         buttonViewCart.addEventListener('click', function(){
             kakaoPixel(trackId).pageView();
             kakaoPixel(trackId).viewCart();
@@ -74,6 +74,12 @@
     </a>
 </head>
 <body>
+    <div class="hero bg-dark text-center py-1" style="margin-bottom: 10px;">
+        <h1 class="text-white">픽셀 & SDK 전환 지표 만들기</h1>
+    </div>
+    <div class="hero bg-info text-center py-1" style="margin-bottom: 10px;">
+        <h2 class="text-white">이벤트 만들기</h2>
+    </div>
     <button>track Id를 입력하세요.</button>
     <input id="trackId" placeholder="트랙 ID를 입력하세요.">
     <div>
