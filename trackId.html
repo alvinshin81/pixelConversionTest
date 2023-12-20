@@ -14,33 +14,7 @@
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
     <script type="text/javascript" charset="UTF-8" src="//t1.daumcdn.net/kas/static/kp.dev.min.js"></script>
-<!--    <script type="text/javascript" charset="UTF-8">-->
-<!--        const button = document.querySelector("button");-->
-<!--        button.onclick = function () {-->
-<!--          let name = prompt("What is your name?");-->
-<!--          alert("Hello " + name + ", nice to see you!");-->
-<!--        };-->
-<!--    </script>-->
-    <script type="text/javascript" charset="UTF-8">
-        const trackId = document.getElementById('trackId').value;
-        let buttonPageView = document.getElementById('pageView');
-        let buttonViewCart = document.getElementById('viewCart');
-
-        buttonPageView.addEventListener('click', function(){
-            kakaoPixel(trackId).pageView();
-            alert("hi");
-            const r = "방문 완료";
-            document.getElementById('result').innerText = r;
-        });
-
-        buttonViewCart.addEventListener('click', function(){
-            kakaoPixel(trackId).pageView();
-            kakaoPixel(trackId).viewCart();
-            const r = " 장바구니 보기 완료";
-            document.getElementById('result').innerText = trackId + r;
-        });
-        
-    </script>
+    
     <style>
         /* 꾸미기 */
         .card {
@@ -88,10 +62,33 @@
     
     <div>
         <button id="pageView">방문</button>
-        <button id="viewCart">장바구니보기</button>
+        <button id="viewCart">장바구니보기1</button>
     </div>
     
     <div id="result"></div>
+    
+    <script type="text/javascript" charset="UTF-8" src="//t1.daumcdn.net/kas/static/kp.dev.min.js"></script>
+    <script type="text/javascript">
+        let trackId = document.getElementById('trackId');
+        let buttonPageView = document.getElementById('pageView');
+        let buttonViewCart = document.getElementById('viewCart');
+
+        buttonPageView.addEventListener('click', function(){
+            
+            kakaoPixel(trackId.value).pageView();
+            alert("hi");
+            const r = "방문 완료";
+            document.getElementById('result').innerText = r;
+        });
+
+        buttonViewCart.addEventListener('click', function(){
+            kakaoPixel(trackId.value).pageView();
+            kakaoPixel(trackId.value).viewCart();
+            const r = " 장바구니 보기 완료";
+            document.getElementById('result').innerText = trackId.value + r;
+        });      
+    </script>
+      
 
 </body>
 </html>
