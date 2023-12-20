@@ -76,9 +76,8 @@
         buttonPageView.addEventListener('click', function(){
             
             kakaoPixel(trackId.value).pageView();
-            alert("hi");
             const r = "방문 완료";
-            document.getElementById('result').innerText = r;
+            document.getElementById('result').innerText = trackId.value + r;
         });
 
         buttonViewCart.addEventListener('click', function(){
