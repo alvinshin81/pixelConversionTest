@@ -55,9 +55,8 @@
     <div class="hero bg-info text-center py-1" style="margin-bottom: 10px;">
         <h2 class="text-white">이벤트 만들기</h2>
     </div>
-    <button>track Id를 입력하세요.</button>
     <form>
-        track ID : <input type="text" id="trackId" placeholder="트랙 ID를 입력하세요."/>
+        track ID : <input type="number" id="trackId" name="trackId" placeholder="트랙 ID를 입력하세요."/>
     </form>
     
     <div>
@@ -73,19 +72,32 @@
         let buttonPageView = document.getElementById('pageView');
         let buttonViewCart = document.getElementById('viewCart');
 
-        buttonPageView.addEventListener('click', function(){
-            
-            kakaoPixel(trackId.value).pageView();
-            const r = "방문 완료";
-            document.getElementById('result').innerText = trackId.value + r;
-        });
+            buttonPageView.addEventListener('click', function(){
+                console.log("트랙 ID: " + trackId.value);
+                if(trackId.value !== ""){
+                    kakaoPixel(trackId.value).pageView();
+                    const r = "방문 완료";
+                    document.getElementById('result').innerText = trackId.value + r;
+                    }   
+                else{
+                    alert('track ID를 입력하세요.');
+                }
+            });
 
-        buttonViewCart.addEventListener('click', function(){
-            kakaoPixel(trackId.value).pageView();
-            kakaoPixel(trackId.value).viewCart();
-            const r = " 장바구니 보기 완료";
-            document.getElementById('result').innerText = trackId.value + r;
-        });      
+            buttonViewCart.addEventListener('click', function(){
+                if(trackId.value !== ""){
+                    kakaoPixel(trackId.value).pageView();
+                    kakaoPixel(trackId.value).viewCart();
+                    const r = " 장바구니 보기 완료";
+                    document.getElementById('result').innerText = trackId.value + r;
+                }   
+                else{
+                    alert('track ID를 입력하세요.');
+                }
+            });   
+
+
+         
     </script>
       
 
