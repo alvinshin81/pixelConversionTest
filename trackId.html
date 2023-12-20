@@ -31,9 +31,10 @@
             const r = "방문 완료";
             document.getElementById('result').innerText = r
         });
-        buttonPageView.addEventListener('click', function(){
+        
+        buttonViewCart.addEventListener('click', function(){
             kakaoPixel(trackId).pageView();
-
+            kakaoPixel(trackId).viewCart();
             const r = " 장바구니 보기 완료";
             document.getElementById('result').innerText = trackId + r
         });
@@ -77,7 +78,7 @@
     <input id="trackId" placeholder="트랙 ID를 입력하세요.">
     <div>
         <button id="pageView">방문</button>
-        <button id="viewCart">방문</button>
+        <button id="viewCart">장바구니보기</button>
     </div>
     
     <div id="result"></div>
