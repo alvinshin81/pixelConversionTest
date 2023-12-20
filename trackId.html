@@ -27,9 +27,10 @@
 
         buttonPageView.addEventListener('click', function(){
             kakaoPixel(trackId).pageView();
+            const r = "방문 완료";
+            document.getElementById('result').innerText = r
         });
-        let r = "방문 완료";
-        document.getElementById('result').value = r
+        
     </script>
     <style>
         /* 꾸미기 */
