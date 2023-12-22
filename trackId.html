@@ -61,20 +61,36 @@
 
     <div>
         <button class="btn btn-outline-primary m-2" id="pageView">방문</button>
-        <button class="btn btn-outline-warning m-2" id="viewCart">콘텐츠/상품 조회</button>
+        <button class="btn btn-outline-warning m-2" id="viewContent">콘텐츠/상품 조회</button>
         <button class="btn btn-outline-info m-2" id="viewCart">장바구니보기</button>
-        <button class="btn btn-outline-danger m-2" id="viewCart">구매</button>
-        <button class="btn btn-outline-success m-2" id="viewCart">회원가입</button>
+        <button class="btn btn-outline-danger m-2" id="purchase">구매</button>
+        <button class="btn btn-outline-success m-2" id="completeRegistration">회원가입</button>
 
     </div>
     
     <div id="result"></div>
+    <div id="productId"></div>
     
     <script type="text/javascript" charset="UTF-8" src="//t1.daumcdn.net/kas/static/kp.dev.min.js"></script>
     <script type="text/javascript">
         let trackId = document.getElementById('trackId');
         let buttonPageView = document.getElementById('pageView');
         let buttonViewCart = document.getElementById('viewCart');
+        let buttonViewContent = document.getElementById('viewContent');
+        let buttonPurchase = document.getElementById('purchase');
+        let buttonCompleteRegistration = document.getElementById('completeRegistration');
+        const productId = Math.floor(Math.random() * 10000000);
+        const productIdB = Math.floor(Math.random() * 10000000);
+        const productQtyA = Math.floor(Math.random() * 10);
+        const productQtyB = Math.floor(Math.random() * 10);
+        const productQtyTotal = productQtyA + productQtyB;
+        const productPriceA = Math.floor(Math.random() * 100) * 1000;
+        const productPriceB = Math.floor(Math.random() * 100) * 1000;
+        const productPriceTotal = productPriceA + productPriceB;
+        const productnameA = "상품A " + productId;
+        const productnameB = "상품B " + productIdB;
+
+
 
             buttonPageView.addEventListener('click', function(){
                 console.log("트랙 ID: " + trackId.value);
@@ -94,6 +110,41 @@
                     kakaoPixel(trackId.value).viewCart();
                     const r = " 장바구니 보기 완료";
                     document.getElementById('result').innerText = trackId.value + r;
+                }   
+                else{
+                    alert('track ID를 입력하세요.');
+                }
+            });   
+
+            buttonViewContent.addEventListener('click', function(){
+                if(trackId.value !== ""){
+                    kakaoPixel(trackId.value).pageView();
+                    kakaoPixel(trackId.value).viewContent({
+                        id: productId
+                    });
+                    const r = "콘텐츠/상품 조회 완료";
+                    document.getElementById('result').innerText = trackId.value + r;
+                    document.getElementById('productId').innerText = "상품 ID: " + productId;
+                }   
+                else{
+                    alert('track ID를 입력하세요.');
+                }
+            });   
+            
+            buttonPurchase.addEventListener('click', function(){
+                if(trackId.value !== ""){
+                    kakaoPixel(trackId.value).purchase({
+                        total_quantity: productQtyTotal, // 주문 내 상품 개수(optional)
+                        total_price: productPriceTotal,  // 주문 총 가격(optional)
+                        currency: "KRW",     // 주문 가격의 화폐 단위(optional, 기본 값은 KRW)
+                        products: [          // 주문 내 상품 정보(optional)
+                            { name: productnameA, quantity: productQtyA, price: productPriceA},
+                            {name: productnameB, quantity: productQtyB, price: productPriceB}
+                        ]
+                    });
+                    const r = "구매 완료";
+                    document.getElementById('result').innerText = trackId.value + r;
+                    document.getElementById('productId').innerText = "상품 ID: " + productId + ", " + productIdB;
                 }   
                 else{
                     alert('track ID를 입력하세요.');
