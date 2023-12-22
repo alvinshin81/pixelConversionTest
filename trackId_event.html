@@ -70,6 +70,13 @@
     
     <div id="result"></div>
     <div id="productId"></div>
+    <div id="productName"></div>
+    <div id="productQty"></div>
+    <div id="productPrice"></div>
+    <hr/>
+    <h5 color="blue">상품 조회, 구매 시 상품은 임의 정보로 세팅됩니다. 세부 정보를 입력하고 싶은 경우 아래 버튼을 클릭하세요.</h5>
+    <a class="btn btn-outline-secondary btn-lg m-2" href="trackIds.html" role="button" rel="nofollow">트랙 ID 목록 보기</a>
+    <a class="btn btn-outline-secondary btn-lg m-2" href="event_purchase.html" role="button" rel="nofollow">구매 이벤트 세부 설정</a>
     
     <script type="text/javascript" charset="UTF-8" src="//t1.daumcdn.net/kas/static/kp.dev.min.js"></script>
     <script type="text/javascript">
@@ -101,81 +108,81 @@
         console.log("productPriceTotal: " + productPriceTotal);
         console.log("productnameA: " + productnameA);
         console.log("productnameB: " + productnameB);
+    
+        buttonPageView.addEventListener('click', function(){
+            console.log("트랙 ID: " + trackId.value);
+            if(trackId.value){
+                kakaoPixel(trackId.value).pageView();
+                const r = "방문 완료";
+                document.getElementById('result').innerText = trackId.value + r;
+                }   
+            else{
+                alert('track ID를 입력하세요.');
+            }
+        });
+
+        buttonViewCart.addEventListener('click', function(){
+            if(trackId.value){
+                kakaoPixel(trackId.value).pageView();
+                kakaoPixel(trackId.value).viewCart();
+                const r = " 장바구니 보기 완료";
+                document.getElementById('result').innerText = trackId.value + r;
+            }   
+            else{
+                alert('track ID를 입력하세요.');
+            }
+        });   
+
+        buttonViewContent.addEventListener('click', function(){
+            if(trackId.value){
+                kakaoPixel(trackId.value).pageView();
+                kakaoPixel(trackId.value).viewContent({
+                    id: productId
+                });
+                const r = "콘텐츠/상품 조회 완료";
+                document.getElementById('result').innerText = trackId.value + r;
+                document.getElementById('productId').innerText = "상품 ID: " + productId;
+            }   
+            else{
+                alert('track ID를 입력하세요.');
+            }
+        });   
         
+        buttonPurchase.addEventListener('click', function(){
+            if(trackId.value){
+                kakaoPixel(trackId.value).pageView();
+                kakaoPixel(trackId.value).purchase({
+                    total_quantity: productQtyTotal, // 주문 내 상품 개수(optional)
+                    total_price: productPriceTotal,  // 주문 총 가격(optional)
+                    currency: "KRW",     // 주문 가격의 화폐 단위(optional, 기본 값은 KRW)
+                    products: [          // 주문 내 상품 정보(optional)
+                        { name: productnameA, quantity: productQtyA, price: productPriceA},
+                        {name: productnameB, quantity: productQtyB, price: productPriceB}
+                    ]
+                });
+                const r = "구매 완료";
+                document.getElementById('result').innerText = trackId.value + r;
+                document.getElementById('productId').innerText = "상품 ID: " + productId + ", " + productIdB;
+                document.getElementById('productName').innerText = "상품 ID: " + productnameA + ", " + productnameB;
+                document.getElementById('productQty').innerText = "상품 ID: " + productQtyA + ", " + productQtyB;
+                document.getElementById('productPrice').innerText = "상품 가격: " + productPriceA + ", " + productPriceB;
+            }   
+            else{
+                alert('track ID를 입력하세요.');
+            }
+        });   
 
-
-
-            buttonPageView.addEventListener('click', function(){
-                console.log("트랙 ID: " + trackId.value);
-                if(trackId.value !== ""){
-                    kakaoPixel(trackId.value).pageView();
-                    const r = "방문 완료";
-                    document.getElementById('result').innerText = trackId.value + r;
-                    }   
-                else{
-                    alert('track ID를 입력하세요.');
-                }
-            });
-
-            buttonViewCart.addEventListener('click', function(){
-                if(trackId.value !== ""){
-                    kakaoPixel(trackId.value).pageView();
-                    kakaoPixel(trackId.value).viewCart();
-                    const r = " 장바구니 보기 완료";
-                    document.getElementById('result').innerText = trackId.value + r;
-                }   
-                else{
-                    alert('track ID를 입력하세요.');
-                }
-            });   
-
-            buttonViewContent.addEventListener('click', function(){
-                if(trackId.value !== ""){
-                    kakaoPixel(trackId.value).pageView();
-                    kakaoPixel(trackId.value).viewContent({
-                        id: productId
-                    });
-                    const r = "콘텐츠/상품 조회 완료";
-                    document.getElementById('result').innerText = trackId.value + r;
-                    document.getElementById('productId').innerText = "상품 ID: " + productId;
-                }   
-                else{
-                    alert('track ID를 입력하세요.');
-                }
-            });   
-            
-            buttonPurchase.addEventListener('click', function(){
-                if(trackId.value !== ""){
-                    kakaoPixel(trackId.value).pageView();
-                    kakaoPixel(trackId.value).purchase({
-                        total_quantity: productQtyTotal, // 주문 내 상품 개수(optional)
-                        total_price: productPriceTotal,  // 주문 총 가격(optional)
-                        currency: "KRW",     // 주문 가격의 화폐 단위(optional, 기본 값은 KRW)
-                        products: [          // 주문 내 상품 정보(optional)
-                            { name: productnameA, quantity: productQtyA, price: productPriceA},
-                            {name: productnameB, quantity: productQtyB, price: productPriceB}
-                        ]
-                    });
-                    const r = "구매 완료";
-                    document.getElementById('result').innerText = trackId.value + r;
-                    document.getElementById('productId').innerText = "상품 ID: " + productId + ", " + productIdB;
-                }   
-                else{
-                    alert('track ID를 입력하세요.');
-                }
-            });   
-            
-            buttonCompleteRegistration.addEventListener('click', function(){
-                if(trackId.value !== ""){
-                    kakaoPixel(trackId.value).pageView();
-                    kakaoPixel(trackId.value).completeRegistration();
-                    const r = "회원가입 완료";
-                    document.getElementById('result').innerText = trackId.value + r;
-                }   
-                else{
-                    alert('track ID를 입력하세요.');
-                }
-            });
+        buttonCompleteRegistration.addEventListener('click', function(){
+            if(trackId.value){
+                kakaoPixel(trackId.value).pageView();
+                kakaoPixel(trackId.value).completeRegistration();
+                const r = "회원가입 완료";
+                document.getElementById('result').innerText = trackId.value + r;
+            }   
+            else{
+                alert('track ID를 입력하세요.');
+            }
+        });
 
          
     </script>
