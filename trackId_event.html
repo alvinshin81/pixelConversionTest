@@ -108,46 +108,70 @@
         console.log("productPriceTotal: " + productPriceTotal);
         console.log("productnameA: " + productnameA);
         console.log("productnameB: " + productnameB);
-    
+        
+        // 방문
         buttonPageView.addEventListener('click', function(){
             console.log("트랙 ID: " + trackId.value);
             if(trackId.value){
                 kakaoPixel(trackId.value).pageView();
-                const r = "방문 완료";
+
+                const r = " 방문 완료";
                 document.getElementById('result').innerText = trackId.value + r;
+
+                // 기존 div 초기화
+                document.getElementById('productId').innerText = "";
+                document.getElementById('productName').innerText = "";
+                document.getElementById('productQty').innerText = "";
+                document.getElementById('productPrice').innerText = "";
                 }   
             else{
                 alert('track ID를 입력하세요.');
             }
         });
 
+        // 장바구니보기
         buttonViewCart.addEventListener('click', function(){
             if(trackId.value){
                 kakaoPixel(trackId.value).pageView();
                 kakaoPixel(trackId.value).viewCart();
+
                 const r = " 장바구니 보기 완료";
                 document.getElementById('result').innerText = trackId.value + r;
-            }   
+            
+                // 기존 div 초기화
+                document.getElementById('productId').innerText = "";
+                document.getElementById('productName').innerText = "";
+                document.getElementById('productQty').innerText = "";
+                document.getElementById('productPrice').innerText = "";
+                }   
             else{
                 alert('track ID를 입력하세요.');
             }
         });   
-
+        
+        // 상품 조회
         buttonViewContent.addEventListener('click', function(){
             if(trackId.value){
                 kakaoPixel(trackId.value).pageView();
                 kakaoPixel(trackId.value).viewContent({
                     id: productId
                 });
-                const r = "콘텐츠/상품 조회 완료";
+
+                const r = " 콘텐츠/상품 조회 완료";
                 document.getElementById('result').innerText = trackId.value + r;
                 document.getElementById('productId').innerText = "상품 ID: " + productId;
-            }   
+            
+                // 기존 div 초기화
+                document.getElementById('productName').innerText = "";
+                document.getElementById('productQty').innerText = "";
+                document.getElementById('productPrice').innerText = "";
+                }   
             else{
                 alert('track ID를 입력하세요.');
             }
         });   
         
+        // 구매
         buttonPurchase.addEventListener('click', function(){
             if(trackId.value){
                 kakaoPixel(trackId.value).pageView();
@@ -160,7 +184,8 @@
                         {name: productnameB, quantity: productQtyB, price: productPriceB}
                     ]
                 });
-                const r = "구매 완료";
+
+                const r = " 구매 완료";
                 document.getElementById('result').innerText = trackId.value + r;
                 document.getElementById('productId').innerText = "상품 ID: " + productId + ", " + productIdB;
                 document.getElementById('productName').innerText = "상품 이름: " + productnameA + ", " + productnameB;
@@ -171,14 +196,22 @@
                 alert('track ID를 입력하세요.');
             }
         });   
-
+        
+        // 회원 가입
         buttonCompleteRegistration.addEventListener('click', function(){
             if(trackId.value){
                 kakaoPixel(trackId.value).pageView();
                 kakaoPixel(trackId.value).completeRegistration();
-                const r = "회원가입 완료";
+                
+                const r = " 회원가입 완료";
                 document.getElementById('result').innerText = trackId.value + r;
-            }   
+            
+                // 기존 div 초기화
+                document.getElementById('productId').innerText = "";
+                document.getElementById('productName').innerText = "";
+                document.getElementById('productQty').innerText = "";
+                document.getElementById('productPrice').innerText = "";
+                }   
             else{
                 alert('track ID를 입력하세요.');
             }
