@@ -75,7 +75,7 @@
     <div id="productPrice"></div>
     <hr/>
     <h5 color="blue">상품 조회, 구매 시 상품은 임의 정보로 세팅됩니다. 세부 정보를 입력하고 싶은 경우 아래 버튼을 클릭하세요.</h5>
-    <a class="btn btn-outline-secondary btn-lg m-2" href="trackIds.html" role="button" rel="nofollow">트랙 ID 목록 보기</a>
+    <a class="btn btn-outline-secondary btn-lg m-2" href="event_viewContent.html" role="button" rel="nofollow">콘텐츠/상품 세부 설정</a>
     <a class="btn btn-outline-secondary btn-lg m-2" href="event_purchase.html" role="button" rel="nofollow">구매 이벤트 세부 설정</a>
     
     <script type="text/javascript" charset="UTF-8" src="//t1.daumcdn.net/kas/static/kp.dev.min.js"></script>
@@ -163,8 +163,8 @@
                 const r = "구매 완료";
                 document.getElementById('result').innerText = trackId.value + r;
                 document.getElementById('productId').innerText = "상품 ID: " + productId + ", " + productIdB;
-                document.getElementById('productName').innerText = "상품 ID: " + productnameA + ", " + productnameB;
-                document.getElementById('productQty').innerText = "상품 ID: " + productQtyA + ", " + productQtyB;
+                document.getElementById('productName').innerText = "상품 이름: " + productnameA + ", " + productnameB;
+                document.getElementById('productQty').innerText = "상품 수량: " + productQtyA + ", " + productQtyB;
                 document.getElementById('productPrice').innerText = "상품 가격: " + productPriceA + ", " + productPriceB;
             }   
             else{

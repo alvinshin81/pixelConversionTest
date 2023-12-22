@@ -53,23 +53,14 @@
         <h1 class="text-white">픽셀 & SDK 전환 지표 만들기</h1>
     </div>
     <div class="hero bg-secondary text-center py-1" style="margin-bottom: 10px;">
-        <h2 class="text-white">구매 이벤트 수동 설정하기</h2>
+        <h2 class="text-white">콘텐츠/상품 조회 이벤트 수동 설정하기</h2>
     </div>
     
     <form>
         <label><b>트랙 ID</b></label><br>
         <input type="number" id="trackId" name="trackId" size="50" placeholder="트랙 ID를 입력하세요." value="${param.trackId}"/><br><br>
-        <label><b>상품 A 정보 </b></label><br>
-        ID  <input type="text" id="productIdA" name="productIdA" size="50" placeholder="A 상품 ID를 입력하세요."/><br>
-        이름 <input type="text" id="productNameA" name="productNameA" size="50" placeholder="A 상품 이름을 입력하세요."/><br>
-        가격 <input type="number" id="productPriceA" name="productPriceA" size="50" placeholder="A 상품 가격을 입력하세요."/><br>
-        수량 <input type="number" id="productQtyA" name="productQtyA" size="50" placeholder="A 상품 수량을 입력하세요."/><br><br>
-
-        <label><b>상품 B 정보 </b></label><br>
-        ID  <input type="text" id="productIdB" name="productIdB" size="50" placeholder="B 상품 ID를 입력하세요."/><br>
-        이름 <input type="text" id="productNameB" name="productNameB" size="50" placeholder="B 상품 이름을 입력하세요."/><br>
-        가격 <input type="number" id="productPriceB" name="productPriceB" size="50" placeholder="B 상품 가격을 입력하세요."/><br>
-        수량 <input type="number" id="productQtyB" name="productQtyB" size="50" placeholder="B 상품 수량을 입력하세요."/><br><br>
+        <label><b>상품 정보 </b></label><br>
+        ID  <input type="text" id="productIdA" name="productIdA" size="50" placeholder="상품 ID를 입력하세요."/><br><br>
 
         <button type="submit" class="btn btn-dark" id="submit">확인</button>
     </form>
@@ -83,24 +74,15 @@
     <hr/>
     <br>
     <h5 color="blue">다른 화면으로 가기</h5>
-    <a class="btn btn-outline-secondary btn-lg m-2" href="event_viewContent.html" role="button" rel="nofollow">콘텐츠/상품 세부 설정</a>
+    <a class="btn btn-outline-secondary btn-lg m-2" href="event_purchase.html" role="button" rel="nofollow">구매 이벤트 세부 설정</a>
     <a class="btn btn-outline-secondary btn-lg m-2" href="trackId_event.html" role="button" rel="nofollow" target="_blank">이벤트 생성하기 Sandbox</a>
     
     <script type="text/javascript" charset="UTF-8" src="//t1.daumcdn.net/kas/static/kp.dev.min.js"></script>
     <script type="text/javascript">
         let trackId = document.getElementById('trackId');
         let productIdA = document.getElementById('productIdA');
-        let productIdB = document.getElementById('productIdB');
-        let productPriceA = document.getElementById('productPriceA');
-        let productPriceB = document.getElementById('productPriceB');
-        let productQtyA = document.getElementById('productQtyA');
-        let productQtyB = document.getElementById('productQtyB');
-        let productNameA = document.getElementById('productNameA');
-        let productNameB = document.getElementById('productNameB');
 
         let buttonSubmit = document.getElementById('submit');
-
-        console.log("productNameB: " + productNameB.value);
         
         buttonSubmit.addEventListener('click', function(){
             console.log("트랙 ID: " + trackId.value);
@@ -109,28 +91,17 @@
                 alert('필수값을 입력하세요.');
                 }   
             else{
-                const productQtyTotal = productQtyA.value + productQtyB.value;
-                const productPriceTotal = productPriceA.value + productPriceB.value;
-
                 console.log("productId: " + productIdA.value);
-                console.log("productIdB: " + productIdB.value);
-                console.log("productQtyA: " + productQtyA.value);
-                console.log("productQtyB: " + productQtyB.value);
-                console.log("productQtyTotal: " + productQtyTotal);
-                console.log("productPriceA: " + productPriceA.value);
-                console.log("productPriceB: " + productPriceB.value);
-                console.log("productPriceTotal: " + productPriceTotal);
-                console.log("productNameA: " + productNameA.value);
                 //새로고침 방지
                 event.preventDefault();
 
                 kakaoPixel(trackId.value).pageView();
-                const r = "구매 완료";
+                kakaoPixel(trackId.value).viewContent({
+                        id: productIdA
+                    });
+                const r = "상품 조회 완료";
                 document.getElementById('result').innerText = trackId.value + r;
-                document.getElementById('productId').innerText = "상품 ID: " + productIdA + ", " + productIdB;
-                document.getElementById('productName').innerText = "상품 이름: " + productnameA + ", " + productnameB;
-                document.getElementById('productQty').innerText = "상품 수량: " + productQtyA + ", " + productQtyB;
-                document.getElementById('productPrice').innerText = "상품 가격: " + productPriceA + ", " + productPriceB;
+                document.getElementById('productId').innerText = "상품 ID: " + productIdA + ", ";
 
                 
             }
