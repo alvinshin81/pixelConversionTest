@@ -79,6 +79,7 @@
         let buttonViewContent = document.getElementById('viewContent');
         let buttonPurchase = document.getElementById('purchase');
         let buttonCompleteRegistration = document.getElementById('completeRegistration');
+
         const productId = Math.floor(Math.random() * 10000000);
         const productIdB = Math.floor(Math.random() * 10000000);
         const productQtyA = Math.floor(Math.random() * 10);
@@ -133,6 +134,7 @@
             
             buttonPurchase.addEventListener('click', function(){
                 if(trackId.value !== ""){
+                    kakaoPixel(trackId.value).pageView();
                     kakaoPixel(trackId.value).purchase({
                         total_quantity: productQtyTotal, // 주문 내 상품 개수(optional)
                         total_price: productPriceTotal,  // 주문 총 가격(optional)
@@ -150,7 +152,18 @@
                     alert('track ID를 입력하세요.');
                 }
             });   
-
+            
+            buttonCompleteRegistration.addEventListener('click', function(){
+                if(trackId.value !== ""){
+                    kakaoPixel(trackId.value).pageView();
+                    kakaoPixel(trackId.value).completeRegistration();
+                    const r = "회원가입 완료";
+                    document.getElementById('result').innerText = trackId.value + r;
+                }   
+                else{
+                    alert('track ID를 입력하세요.');
+                }
+            });
 
          
     </script>
