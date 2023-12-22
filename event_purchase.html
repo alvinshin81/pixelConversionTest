@@ -99,9 +99,7 @@
         let productNameB = document.getElementById('productNameB');
 
         let buttonSubmit = document.getElementById('submit');
-
-        console.log("productNameB: " + productNameB.value);
-        
+       
         buttonSubmit.addEventListener('click', function(){
             console.log("트랙 ID: " + trackId.value);
             if(!trackId.value || !productIdA.value || !productIdB.value || !productPriceA.value || !productPriceB.value || !productQtyA.value || !productQtyB.value || !productNameA.value || !productNameB.value){
@@ -121,6 +119,7 @@
                 console.log("productPriceB: " + productPriceB.value);
                 console.log("productPriceTotal: " + productPriceTotal);
                 console.log("productNameA: " + productNameA.value);
+                console.log("productNameB: " + productNameB.value);
                 //새로고침 방지
                 event.preventDefault();
 
