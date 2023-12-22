@@ -124,15 +124,23 @@
                 //새로고침 방지
                 event.preventDefault();
 
-                kakaoPixel(trackId.value).pageView();
+                // kakaoPixel(trackId.value).pageView();
+                // kakaoPixel(trackId.value).purchase({
+                //     total_quantity: productQtyTotal, // 주문 내 상품 개수(optional)
+                //     total_price: productPriceTotal,  // 주문 총 가격(optional)
+                //     currency: "KRW",     // 주문 가격의 화폐 단위(optional, 기본 값은 KRW)
+                //     products: [          // 주문 내 상품 정보(optional)
+                //         {name: productnameA.value, quantity: productQtyA.value, price: productPriceA.value},
+                //         {name: productnameB.value, quantity: productQtyB.value, price: productPriceB.value}
+                //     ]
+                // });
+
                 const r = "구매 완료";
                 document.getElementById('result').innerText = trackId.value + r;
                 document.getElementById('productId').innerText = "상품 ID: " + productIdA.value + ", " + productIdB.value;
-                document.getElementById('productName').innerText = "상품 이름: " + productnameA.value + ", " + productnameB.value;
+                document.getElementById('productName').innerText = "상품 이름: " + productNameA.value + ", " + productNameA.value;
                 document.getElementById('productQty').innerText = "상품 수량: " + productQtyA.value + ", " + productQtyB.value;
                 document.getElementById('productPrice').innerText = "상품 가격: " + productPriceA.value + ", " + productPriceB.value;
-
-                
             }
         });
 

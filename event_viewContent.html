@@ -86,7 +86,8 @@
         
         buttonSubmit.addEventListener('click', function(){
             console.log("트랙 ID: " + trackId.value);
-            if(!trackId.value || !productIdA.value || !productIdB.value || !productPriceA.value || !productPriceB.value || !productQtyA.value || !productQtyB.value || !productNameA.value || !productNameB.value){
+            console.log("상품 ID: " + productId.value);
+            if(!trackId.value || !productIdA.value){
                 event.preventDefault();
                 alert('필수값을 입력하세요.');
                 }   
@@ -97,11 +98,11 @@
 
                 kakaoPixel(trackId.value).pageView();
                 kakaoPixel(trackId.value).viewContent({
-                        id: productIdA
+                        id: productIdA.value
                     });
                 const r = "상품 조회 완료";
                 document.getElementById('result').innerText = trackId.value + r;
-                document.getElementById('productId').innerText = "상품 ID: " + productIdA.value + ", ";
+                document.getElementById('productId').innerText = "상품 ID: " + productIdA.value;
 
                 
             }
