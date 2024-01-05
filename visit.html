@@ -15,13 +15,13 @@
         crossorigin="anonymous"></script>
     <script type="text/javascript" charset="UTF-8" src="//t1.daumcdn.net/kas/static/kp.dev.min.js"></script>
     <script type="text/javascript" charset="UTF-8" src="trackIds.js"></script> 
-    <script type="text/javascript">
+    <script>
         // 외부 파일에 정의된 변수를 사용하기 위해 다시 정의 
         const trackId = trackIdList; 
 
         for(let i = 0; i < trackId.length; i++){
-            kakaoPixel(trackId[i]).pageView();
             console.log(trackId[i]);
+            kakaoPixel(trackId[i]).pageView();
         }
 
     </script>
