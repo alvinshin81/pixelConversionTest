@@ -14,18 +14,18 @@
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
     <script type="text/javascript" charset="UTF-8" src="//t1.daumcdn.net/kas/static/kp.dev.min.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="trackIds.js"></script> 
     <script type="text/javascript">
-        kakaoPixel('7152515445403531586').pageView();
+        // 외부 파일에 정의된 변수를 사용하기 위해 다시 정의 
+        const trackId = trackIdList; 
+
+        for(let i = 0; i < trackId.length; i++){
+            kakaoPixel(trackId[i]).pageView();
+            console.log(trackId[i]);
+        }
+
     </script>
-    <script type="text/javascript">
-        kakaoPixel('6141657146100435130').pageView();
-    </script>
-    <script type="text/javascript">
-        kakaoPixel('4917123126974236283').pageView();
-    </script>
-    <script type="text/javascript">
-        kakaoPixel('4587589955779840066').pageView();
-    </script>
+        
     <style>
         /* 꾸미기 */
         .card {

@@ -1,0 +1,21 @@
+<!DOCTYPE html> 
+<html> 
+  <head> 
+    <meta charset="UTF-8"> 
+    <title>External JavaScript Example</title> 
+  </head> 
+  <body> 
+    <script src="trackIds.js"></script> 
+    <script> 
+        
+        // 외부 파일에 정의된 변수를 사용하기 위해 다시 정의 
+        const trackId = trackIdList; 
+
+        for(let i = 0; i < trackId.length; i++){
+
+            console.log(trackId[i]);
+        }
+      
+    </script> 
+  </body> 
+</html>
