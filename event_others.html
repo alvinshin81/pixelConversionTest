@@ -92,10 +92,7 @@
     </form>
     
     <div id="result"></div>
-    <div id="productId"></div>
-    <div id="productName"></div>
-    <div id="productQty"></div>
-    <div id="productPrice"></div>
+    <div id="sub_result"></div>
     <hr/>
     <br>
     <h5 style="color:blue;">다른 화면으로 가기</h5>
@@ -117,24 +114,45 @@
                 alert('표준이벤트를 선택하세요.');
             }
             else{
-                if(trackId.value){
+                if(!trackId.value){
+                    event.preventDefault();
+                    alert('트랙 ID를 입력하세요.');
+                }
+                else{
                     let standard = stdEvent.value;
                     event.preventDefault();
                     console.log("트랙 ID: " + trackId.value);
                     console.log("표준이벤트: " + stdEvent.value);
-                    console.log(standard);
+                    
+                    if(stdEvent.value == "search"){
+                        kakaoPixel(trackId.value).pageView();
+                        kakaoPixel(trackId.value).search();
 
-                    kakaoPixel(trackId.value).pageView();
-                    kakaoPixel(trackId.value).standard();
+                    }
+                    else if(stdEvent.value == "completeRegistration"){
+                        kakaoPixel(trackId.value).pageView();
+                        kakaoPixel(trackId.value).completeRegistration();
+                    }
+                    else if(stdEvent.value == "addToCart"){
+                        kakaoPixel(trackId.value).pageView();
+                        kakaoPixel(trackId.value).addToCart();
+                    }
+                    else if(stdEvent.value == "addToWishList"){
+                        kakaoPixel(trackId.value).pageView();
+                        kakaoPixel(trackId.value).addToWishList();
+                    }
+                    else if(stdEvent.value == "participation"){
+                        kakaoPixel(trackId.value).pageView();
+                        kakaoPixel(trackId.value).participation();
+                    }
 
-
+                    else {
+                        kakaoPixel(trackId.value).pageView();
+                        document.getElementById('sub_result').innerText = stdEvent.value + " 이벤트를 생성할 수 없습니다.";
+                    }
+   
                     const r = "완료";
                     document.getElementById('result').innerText = stdEvent.value + r;
-
-                }
-                else{
-                    event.preventDefault();
-                    alert('트랙 ID를 입력하세요.');
                 }
             }
         });
