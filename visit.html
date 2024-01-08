@@ -16,14 +16,16 @@
     <script type="text/javascript" charset="UTF-8" src="//t1.daumcdn.net/kas/static/kp.dev.min.js"></script>
     <script type="text/javascript" charset="UTF-8" src="trackIds.js"></script> 
     <script type="text/javascript">
-        kakaoPixel('6141657146100435130').pageView();
         // 외부 파일에 정의된 변수를 사용하기 위해 다시 정의 
         const trackId = trackIdList; 
 
         for(let i = 0; i < trackId.length; i++){
-            console.log(trackId[i]);
-            console.log("'" + trackId[i] + "'");
-            kakaoPixel("'" + trackId[i] + "'").pageView();
+            var tId = trackId[i].toString();
+            
+            // console.log(trackId[i]);
+            console.log(tId)
+            
+            kakaoPixel(tId).pageView();
         }
 
     </script>
