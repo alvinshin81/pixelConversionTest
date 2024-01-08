@@ -14,7 +14,28 @@
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
     <script type="text/javascript" charset="UTF-8" src="//t1.daumcdn.net/kas/static/kp.dev.min.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="trackIds.js"></script> 
     <script type="text/javascript">
+        // 외부 파일에 정의된 변수를 사용하기 위해 다시 정의 
+        const trackId = trackIdList; 
+
+        for(let i = 0; i < trackId.length; i++){
+            var tId = trackId[i].toString();
+            
+            console.log(tId)            
+            kakaoPixel(tId).pageView();
+            kakaoPixel(tId).purchase({
+            total_quantity: "2", // 주문 내 상품 개수(optional)
+            total_price: "300",  // 주문 총 가격(optional)
+            currency: "KRW",     // 주문 가격의 화폐 단위(optional, 기본 값은 KRW)
+            products: [          // 주문 내 상품 정보(optional)
+                {id: "aaa1", name: "snack1", quantity: "1", price: "200"},
+                {id: "bbb1",  name: "snack2", quantity: "1", price: "100"}
+            ]
+        });
+        }
+    </script>
+    <!-- <script type="text/javascript">
         kakaoPixel('7152515445403531586').pageView();
         kakaoPixel('7152515445403531586').purchase({
             total_quantity: "2", // 주문 내 상품 개수(optional)
@@ -61,7 +82,8 @@
                 { name: "snack2", quantity: "1", price: "100"}
             ]
         });
-    </script>
+    </script> -->
+
     <style>
         /* 꾸미기 */
         .card {
