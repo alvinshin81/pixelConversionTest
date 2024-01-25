@@ -31,14 +31,16 @@ const dbList = db.prepare(
 const table = dbList.all();
 
 // 조회된 테이블에서 track ID만 trackList로 변환
-var trackList = [];
+var trackListDb = [];
 table.forEach(function(value){
     var obj_value = value['ID'];
-    trackList.push(obj_value);
-    // console.log(obj_value);
+    trackListDb.push(obj_value);
+    console.log(obj_value);
 });
 
-export default trackList;
+export default trackListDb;
+
+
 // function getTrackIds() {
 //     var trackList = [];
 //     table.forEach(function(value){
