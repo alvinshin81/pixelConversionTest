@@ -55,9 +55,9 @@ select {
     margin-top: 10px;
     font-family: cursive, sans-serif;
     outline: 0;
-    background: #ddcc10;
-    color: #fff;
-    border: 1px solid crimson;
+    background: #d1d1d1;
+    color: #343434;
+    border: 1px solid rgb(75, 75, 75);
     padding: 4px;
     border-radius: 9px;
 }
